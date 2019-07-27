@@ -1,0 +1,75 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (C) 2017 Marvell Technology Group Ltd.
+ *
+ * Device Tree file for Marvell Armada AP810 OCTA cores.
+ */
+
+#define CPU_NUM(x)			(AP_NUM << 16 | x)
+
+#include "armada-ap810.dtsi"
+
+/ {
+	cpus@AP_NUM {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "marvell,armada-ap810-octa";
+
+		cpu0@000 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x0)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+		cpu1@001 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x1)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+		cpu2@100 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x100)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+		cpu3@101 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x101)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+		cpu4@200 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x200)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+		cpu5@201 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x201)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+		cpu6@300 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x300)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+		cpu7@301 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a72", "arm,armv8";
+			reg = <CPU_NUM(0x301)>;
+			enable-method = "psci";
+			numa-node-id = <AP_NUM>;
+		};
+	};
+};

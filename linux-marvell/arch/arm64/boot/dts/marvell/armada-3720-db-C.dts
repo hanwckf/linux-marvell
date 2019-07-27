@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Device Tree file for Marvell Armada 3720 development board
+ * This board file supports the C configuration of the board
+ */
+
+#include "armada-3720-db.dts"
+/* This file enables eth1 to work in SGMII mode with 1g or 2.5g,
+ * eth0 still works in RGMII mode.
+ */
+&eth1 {
+	status = "okay";
+	phy-mode = "2500base-x";
+	/* Generic PHY, providing serdes lanes */
+	phys = <&a3700_comphy0 1>;
+	managed = "in-band-status";
+};

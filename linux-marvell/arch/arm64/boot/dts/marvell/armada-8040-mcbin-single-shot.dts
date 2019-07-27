@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (C) 2016 Marvell Technology Group Ltd.
+ *
+ * Device Tree for MACCHIATOBin SingleShot Armada 8040 community board platform
+ * Difference from MACCHIATOBin DoubleShot:
+ *   doesn't have two Copper 3310 PHYs connected to port 0 on each CP110
+ */
+
+#include "armada-8040-mcbin.dts"
+
+/ {
+	model = "Marvell 8040 MACHIATOBin SingleShot";
+	compatible = "marvell,armada8040-mcbin-single-shot",
+			"marvell,armada8040-mcbin",
+			"marvell,armada8040", "marvell,armada-ap806-quad",
+			"marvell,armada-ap806";
+
+	cp0 {
+		config-space {
+			ethernet@0 {
+				eth0 {
+					/delete-property/phy;
+				};
+			};
+			/delete-node/cp0_xmdio;
+		};
+	};
+
+	cp1 {
+		config-space {
+			ethernet@0 {
+				eth0 {
+					/delete-property/phy;
+				};
+			};
+			/delete-node/cp1_xmdio;
+		};
+	};
+};

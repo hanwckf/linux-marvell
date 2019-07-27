@@ -1,0 +1,14 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (C) 2018 Marvell Technology Group Ltd.
+ *
+ * Device Tree file for Marvell Armada AP806.
+ */
+
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#define AP_NAME		ap806
+#include "armada-ap80x.dtsi"
+
+/ {
+	model = "Marvell Armada AP806";
+};

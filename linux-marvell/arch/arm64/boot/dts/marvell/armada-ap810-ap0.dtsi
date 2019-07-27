@@ -1,0 +1,86 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (C) 2018 Marvell Technology Group Ltd.
+ *
+ * Device Tree file for Marvell Armada AP810.
+ */
+
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+/dts-v1/;
+
+/ {
+	model = "Marvell Armada AP810";
+	compatible = "marvell,armada-ap810";
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	psci {
+		compatible = "arm,psci-0.2";
+		method = "smc";
+	};
+
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		psci-area@4000000 {
+			reg = <0 0x4000000 0 0x200000>;
+			no-map;
+		};
+
+		tee@4400000 {
+			reg = <0 0x4400000 0 0x1000000>;
+			no-map;
+		};
+
+		maintenance-area@8000000 {
+			reg = <0 0x8000000 0 0x100000>;
+			no-map;
+		};
+	};
+
+	config-space {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "simple-bus";
+		ranges = <0x0 0x0 0xdc000000 0x14000000>;
+		interrupt-parent = <&gic>;
+
+		/* Every AP810 die includes GIC Distributor.
+		 * As GIC-600 feature there is no need to initialize
+		 * every distributor in multi-die system, since GIC-600
+		 * broadcast the distributor configuration for other dies,
+		 * (this is done from AP0 in ATF firmware).
+		 * The above explains why we need to describe the
+		 * following interrupt controller node only for AP0
+		 */
+		gic: interrupt-controller@13000000 {
+			compatible = "arm,gic-v3";
+			#interrupt-cells = <3>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			interrupt-controller;
+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+			ranges;
+
+			reg = <0x13000000 0x10000>,	/* GICD */
+			      <0x13060000 0x100000>,	/* GICR */
+			      <0x100c0000 0x2000>,	/* GICC */
+			      <0x100d0000 0x1000>,	/* GICH */
+			      <0x100e0000 0x2000>;	/* GICV */
+		};
+
+		/* All APs are synced in relevance to AP0 timer,
+		 * so we describe timer node only for AP0.
+		 */
+		timer {
+			compatible = "arm,armv8-timer";
+			interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+				     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+				     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+				     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+		};
+	};
+};

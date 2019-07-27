@@ -1,0 +1,68 @@
+Marvell Armada 7K/8K Platforms Device Tree Bindings
+---------------------------------------------------
+
+Boards using a SoC of the Marvell Armada 3900, 7K, or 8K families must carry
+the following root node property:
+
+ - compatible, with one of the following values:
+
+SoC:
+   - "marvell,armada7020", "marvell,armada-ap806-dual", "marvell,armada-ap806"
+      when the SoC being used is the Armada 7020
+
+   - "marvell,armada7040", "marvell,armada-ap806-quad", "marvell,armada-ap806"
+      when the SoC being used is the Armada 7040
+
+   - "marvell,armada3900", "marvell,armada-ap807-quad", "marvell,armada-ap807"
+      when the SoC being used is the Armada 3900
+
+   - "marvell,armada8020", "marvell,armada-ap806-dual", "marvell,armada-ap806"
+      when the SoC being used is the Armada 8020
+
+   - "marvell,armada8040", "marvell,armada-ap806-quad", "marvell,armada-ap806"
+      when the SoC being used is the Armada 8040
+
+Boards:
+   - "marvell,armada3900-db-vd"
+      when the board being used is the Armada 3900 validation board
+
+   - "marvell,armada7040-db-default", "marvell,armada7040-db"
+      when the board being used is the Armada 7040 Development board
+
+   - "marvell,armada7040-db-B", "marvell,armada7040-db"
+      when the board being used is the Armada 7040 Development board with Setup B
+
+   - "marvell,armada7040-db-C", "marvell,armada7040-db"
+      when the board being used is the Armada 7040 Development board with Setup C
+
+   - "marvell,armada7040-db-D", "marvell,armada7040-db"
+      when the board being used is the Armada 7040 Development board with Setup D
+
+   - "marvell,armada7040-db-E", "marvell,armada7040-db"
+      when the board being used is the Armada 7040 Development board with Setup E
+
+   - "marvell,armada8040-db-default", "marvell,armada8040-db"
+      when the board being used is the Armada 8040 Development board
+
+   - "marvell,armada8040-db-B", "marvell,armada8040-db"
+      when the board being used is the Armada 8040 Development board with Setup B
+
+   - "marvell,armada8040-db-C", "marvell,armada8040-db"
+      when the board being used is the Armada 8040 Development board with Setup C
+
+   - "marvell,armada8040-db-D", "marvell,armada8040-db"
+      when the board being used is the Armada 8040 Development board with Setup D
+
+   - "marvell,armada8040-db-E", "marvell,armada8040-db"
+      when the board being used is the Armada 8040 Development board with Setup E
+
+   - "marvell,armada8040-mcbin"
+      when the board being used is the MACCHIATOBin community board
+
+   - "marvell,armada8040-mcbin-single-shot"
+      when the board being used is the MACCHIATOBin single shot community board
+
+Example:
+
+compatible = "marvell,armada7040-db", "marvell,armada7040",
+             "marvell,armada-ap806-quad", "marvell,armada-ap806";
