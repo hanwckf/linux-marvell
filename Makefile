@@ -24,6 +24,7 @@ kernel: kernel-config
 	$(MAKE_ARCH) -j$(J) Image dtbs
 
 modules: kernel-config
+	rm -rf $(STAGE_DIR)
 	$(MAKE_ARCH) -j$(J) modules
 	$(MAKE_ARCH) INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=$(STAGE_DIR) modules_install
 	rm -f $(STAGE_DIR)/lib/modules/$(KVER)/build $(STAGE_DIR)/lib/modules/$(KVER)/source

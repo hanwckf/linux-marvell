@@ -28,6 +28,13 @@
 		enable-active-high;
 		gpio = <&gpiosb 0 GPIO_ACTIVE_HIGH>;
 	};
+
+	gpio_fan {
+		compatible = "gpio-fan";
+		gpios = <&gpiosb 4 GPIO_ACTIVE_HIGH>;
+		gpio-fan,speed-map = <0    0
+				      1000 1>;
+	};
 };
 
 &sata {
