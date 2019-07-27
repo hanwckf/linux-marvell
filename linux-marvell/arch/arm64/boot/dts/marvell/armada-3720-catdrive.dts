@@ -138,6 +138,7 @@
 			aw2013,hold-time-ms = <1>;
 			aw2013,fall-time-ms = <2>;
 			aw2013,off-time-ms = <1>;
+			default-state = "on";
 		};
 
 		aw2013,blue {

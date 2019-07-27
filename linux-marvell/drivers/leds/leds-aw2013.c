@@ -627,6 +627,30 @@ free_err:
 	return rc;
 }
 
+static int aw2013_led_default_set(struct aw2013_led *led_array,
+				struct device_node *node)
+{
+	struct aw2013_led *led;
+	struct device_node *temp;
+	int parsed_leds = 0;
+	const char* state;
+
+	for_each_child_of_node(node, temp) {
+		led = &led_array[parsed_leds];
+		state = of_get_property(temp, "default-state", NULL);
+		if (state) {
+			if (!strcmp(state, "on")) {
+				aw2013_set_brightness(&led->cdev, led->cdev.max_brightness);
+			} else {
+				aw2013_set_brightness(&led->cdev, LED_OFF);
+			}
+		}
+		parsed_leds++;
+	}
+
+	return 0;
+}
+
 static int aw2013_led_probe(struct i2c_client *client,
 			   const struct i2c_device_id *id)
 {
@@ -680,6 +704,8 @@ static int aw2013_led_probe(struct i2c_client *client,
 		dev_err(&client->dev, "Check chip id error\n");
 		goto fail_parsed_node;
 	}
+
+	aw2013_led_default_set(led_array, node);
 
 	return 0;
 
