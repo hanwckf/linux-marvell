@@ -637,6 +637,7 @@ static int aw2013_led_default_set(struct aw2013_led *led_array,
 
 	for_each_child_of_node(node, temp) {
 		led = &led_array[parsed_leds];
+		led->client = led_array->client;
 		state = of_get_property(temp, "default-state", NULL);
 		if (state) {
 			if (!strcmp(state, "on")) {
@@ -737,6 +738,12 @@ static int aw2013_led_remove(struct i2c_client *client)
 	return 0;
 }
 
+static void aw2013_led_shutdown(struct i2c_client *client)
+{
+	struct aw2013_led *led_array = i2c_get_clientdata(client);
+	aw2013_write(led_array, AW_REG_LED_ENABLE, 0x00);
+}
+
 static const struct i2c_device_id aw2013_led_id[] = {
 	{"aw2013_led", 0},
 	{},
@@ -752,6 +759,7 @@ static struct of_device_id aw2013_match_table[] = {
 static struct i2c_driver aw2013_led_driver = {
 	.probe = aw2013_led_probe,
 	.remove = aw2013_led_remove,
+	.shutdown = aw2013_led_shutdown,
 	.driver = {
 		.name = "aw2013_led",
 		.owner = THIS_MODULE,
