@@ -83,6 +83,11 @@
 				label = "ubootenv";
 				reg = <0x1f0000 0x10000>;
 			};
+
+			partition@200000 {
+				label = "reserve";
+				reg = <0x200000 0x600000>;
+			};
 		};
 	};
 };
