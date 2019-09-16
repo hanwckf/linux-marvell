@@ -1,0 +1,29 @@
+dist: xenial
+language: minimal
+sudo: required
+addons:
+  apt:
+    packages:
+    - tree
+    - u-boot-tools
+env:
+- toolchain=gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu
+script:
+- wget https://releases.linaro.org/components/toolchain/binaries/7.4-2019.02/aarch64-linux-gnu/${toolchain}.tar.xz && tar xf ${toolchain}.tar.xz
+- export PATH=$PATH:$(pwd)/${toolchain}/bin && aarch64-linux-gnu-gcc -v
+- make all
+- tree -hn output
+deploy:
+  provider: releases
+  api_key:
+    secure: drtE233lqsli0kTPzJe8GRcuo+fbJsAS4ZtPCj1jU2C/sNCYtIH4XDmebp9L2OnyvXAvIvytC8xsVK7X1buQy441tjtNHWMhvfSI2NWcYjulD5TosnoPaZ7tSHYRwRqJsdWnIyR/7DAEGgRr4wj154ZYHFBVcpB2jqtlaYyFmADe3X2VnXxB4XnnqLoA2i1a83dKvxvxn76zpl1yjmfztIADxXqgmo62mf+3HtnZO7xBcpXFSWFrGfrxkFnININ9+Qtizr/JdHPfi31doWH8tM/Jsvx+Zn8GcPH9ALG2GKV+blCLr05XxfzUck8AkZNhshDGJqO/cGY04epzEkCVSRVvw7SNzSXEvytDBPU5URWWdmIC6zRMTkHtEEqIKGCLCzisNiktChJ+EE/TI58JokicmfQeJgcyp+h4nPGDeULssEA2jU13dZn7RDWV35zpSYP4QtEXQ2mtCobV1U8jazToS+2q0dc9YJMcnDUQLSsLvoqIKIgJCYN8p2sY53bgbXJaKj23zAG+5KZF6SMSNrIHFtTaljHiBoKWUNxVI2mvTIOf+QW5bNspiwpnvfp+YYtaUzTuv4pNpPiG6G3NWnAP+qLMp9Jp3BQ67W6+HByaXAe97NmpKmBBMc4nE6KZxanOA8/5iYKNIvqjukay1JGrMnas9EODabGHyBZztj8=
+  skip_cleanup: true
+  overwrite: true
+  file_glob: true
+  file: output/Image
+  file: output/modules.tar.xz
+  file: output/armada-3720-catdrive.dtb
+  on:
+    repo: hanwckf/linux-marvell
+    tags: true
+
