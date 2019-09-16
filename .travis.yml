@@ -20,9 +20,10 @@ deploy:
   skip_cleanup: true
   overwrite: true
   file_glob: true
-  file: output/Image
-  file: output/modules.tar.xz
-  file: output/armada-3720-catdrive.dtb
+  file: 
+    - output/Image
+    - output/modules.tar.xz
+    - output/armada-3720-catdrive.dtb
   on:
     repo: hanwckf/linux-marvell
     tags: true
