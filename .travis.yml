@@ -9,14 +9,15 @@ addons:
 env:
 - toolchain=gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu
 script:
-- wget https://releases.linaro.org/components/toolchain/binaries/7.4-2019.02/aarch64-linux-gnu/${toolchain}.tar.xz && tar xf ${toolchain}.tar.xz
+- wget https://releases.linaro.org/components/toolchain/binaries/7.4-2019.02/aarch64-linux-gnu/${toolchain}.tar.xz
+  && tar xf ${toolchain}.tar.xz
 - export PATH=$PATH:$(pwd)/${toolchain}/bin && aarch64-linux-gnu-gcc -v
 - make all
 - tree -hn output
 deploy:
   provider: releases
   api_key:
-    secure: drtE233lqsli0kTPzJe8GRcuo+fbJsAS4ZtPCj1jU2C/sNCYtIH4XDmebp9L2OnyvXAvIvytC8xsVK7X1buQy441tjtNHWMhvfSI2NWcYjulD5TosnoPaZ7tSHYRwRqJsdWnIyR/7DAEGgRr4wj154ZYHFBVcpB2jqtlaYyFmADe3X2VnXxB4XnnqLoA2i1a83dKvxvxn76zpl1yjmfztIADxXqgmo62mf+3HtnZO7xBcpXFSWFrGfrxkFnININ9+Qtizr/JdHPfi31doWH8tM/Jsvx+Zn8GcPH9ALG2GKV+blCLr05XxfzUck8AkZNhshDGJqO/cGY04epzEkCVSRVvw7SNzSXEvytDBPU5URWWdmIC6zRMTkHtEEqIKGCLCzisNiktChJ+EE/TI58JokicmfQeJgcyp+h4nPGDeULssEA2jU13dZn7RDWV35zpSYP4QtEXQ2mtCobV1U8jazToS+2q0dc9YJMcnDUQLSsLvoqIKIgJCYN8p2sY53bgbXJaKj23zAG+5KZF6SMSNrIHFtTaljHiBoKWUNxVI2mvTIOf+QW5bNspiwpnvfp+YYtaUzTuv4pNpPiG6G3NWnAP+qLMp9Jp3BQ67W6+HByaXAe97NmpKmBBMc4nE6KZxanOA8/5iYKNIvqjukay1JGrMnas9EODabGHyBZztj8=
+    secure: bn3tkjYbSaZ+7OapITxPrSmTKUJvzBoDPTIzKXRnQ6sPjZIOkl3tEkdHCUHoRazQuYCy4mPc1aFZ3EfSiMZNHjpTE8AHwYbiFiDgrah/S5aecP1WndF3n1R1GB7NXn84wzn2K/EFHW1Vjsg65pGJ8OJ6GKmo7fQE+UDc/Ja4bU3xxfDAfV4jFFELhq84X6BUo1wV+JxLxQ+z4m1aP/DT9k1NvC8vaSLyr0AcsbQveDMTy1XTnN/IoVH27BAVTUUCc9oIKrWHuVUGBrIx120M1QbqYB8OqyZ/TAH9kJww+LOgCPoL8UoyFy9YY2wLuzSiaT+WNBneigeHk+ZbGgpy2EoW8qvjtwa1Ab8fOhQnnjir53qfgyB1s2hsWTvVdG6sqqJ7edFRoo1vGhczNnK7zGDfFCtoVFhe/XaTxrEOZ9AmZoJqt47WhI76W+xuzVn9EVYQ00sO38W4k6T9nnz+zWRM5KZafJ5x+qF+h0xvwXaWCE2pd/OtQ5cLvaAC/inA8DZZoGSeG/BEpSye9Ll6sIfRwzp7QO/F3HziuV6NV3DP2J7pcBG+NgSixrNXMwZuPaLenCRLfAYuNMTkfVBIDWWpfUe1m3ivupBqE+qG3kN3bKB7R9/BdxqpeH645YbV2/Um4Y3f4PrLTJpBRzlC0/uakJx1jRknjzoYctBWZzc=
   skip_cleanup: true
   overwrite: true
   file_glob: true
