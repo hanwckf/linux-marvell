@@ -106,6 +106,7 @@
 	status = "okay";
 	phy0: ethernet-phy@0 {
 		reg = <0>;
+		marvell,reg-init = <0x01 0x1A 0x0 0x47>;
 	};
 };
 
